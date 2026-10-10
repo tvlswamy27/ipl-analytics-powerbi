@@ -1,0 +1,29 @@
+table 'Dim Opponent'
+	lineageTag: c86fefe5-f844-4145-a411-d9b673b8804b
+
+	column team_id
+		dataType: int64
+		lineageTag: dc7c3863-67a7-465b-90cc-f58f8bbe30a2
+		summarizeBy: count
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		lineageTag: 3142a195-a111-4d68-acb1-86b0bbe34208
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Opponent' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(WorkspaceDataPath & "teams_data.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders,{{"team_id", Int64.Type}, {"team_name", type text}})
+				in
+				    ChangedType
+

@@ -1,0 +1,36 @@
+table 'Dim Match Winner'
+	lineageTag: d9769a3e-4d20-4fe0-9c99-0b20ff9e1323
+
+	column team_id
+		dataType: int64
+		lineageTag: 1929df89-0de5-4601-9a61-a297376395bf
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		lineageTag: bb51aca7-2d34-4015-957c-66b3ec7ab58c
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Color' = SWITCH('Dim Match Winner'[team_name], "Mumbai Indians", "#004BA0", "Chennai Super Kings", "#F9CD05", "Royal Challengers Bangalore", "#D1171B", "Royal Challengers Bengaluru", "#D1171B", "Kolkata Knight Riders", "#3A225D", "Sunrisers Hyderabad", "#F26522", "Punjab Kings", "#ED1B24", "Kings XI Punjab", "#ED1B24", "Delhi Capitals", "#17479E", "Delhi Daredevils", "#17479E", "Rajasthan Royals", "#EA1A85", "Gujarat Titans", "#1C2C5B", "Lucknow Super Giants", "#00A6E0", "#808080")
+		dataType: string
+		lineageTag: a5d71186-9b52-4aaa-b675-1b9ead52c3af
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Match Winner' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(WorkspaceDataPath & "teams_data.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders,{{"team_id", Int64.Type}, {"team_name", type text}})
+				in
+				    ChangedType
+

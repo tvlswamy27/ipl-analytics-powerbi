@@ -1,0 +1,48 @@
+table 'Dim Date'
+	lineageTag: 9669b6ee-6ff0-4af0-b2a7-2ab3b6574270
+	dataCategory: Time
+
+	column Date
+		isKey
+		lineageTag: eeedb0a5-d56f-459d-916c-270ce4579c36
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		lineageTag: df4d77f3-87c8-4aac-a993-5e3e9ea77a4b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 417f975a-2b7b-4dfa-bf32-ee244da2b4dc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		lineageTag: 6f8a7fa6-dc6c-4cab-b5ba-f985612b6cfe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Date' = calculated
+		mode: import
+		source =
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2008, 1, 1), DATE(2026, 12, 31)),
+				    "Year", YEAR([Date]),
+				    "Month", FORMAT([Date], "MMMM"),
+				    "Month Number", MONTH([Date])
+				)
+

@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 302.85689375168374
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1156.5000932774367,
+            "y": 604.68992312395721
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "79ef7452-73eb-4587-8b10-74792f46e573",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 353.17174622109565
+          },
+          "nodeIndex": "Dim Date",
+          "nodeLineageTag": "9669b6ee-6ff0-4af0-b2a7-2ab3b6574270",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 422.91636964263085,
+            "y": -50
+          },
+          "nodeIndex": "Dim Match Player",
+          "nodeLineageTag": "ac224cf4-b618-4761-9847-22df1793b7ea",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 136.73615325313523,
+            "y": 119.34291950731904
+          },
+          "nodeIndex": "Dim Match Winner",
+          "nodeLineageTag": "d9769a3e-4d20-4fe0-9c99-0b20ff9e1323",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1440.5000932774367,
+            "y": 690.68992312395721
+          },
+          "nodeIndex": "Dim Opponent",
+          "nodeLineageTag": "c86fefe5-f844-4145-a411-d9b673b8804b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 922.50009327743658,
+            "y": 1235.3798462479144
+          },
+          "nodeIndex": "Dim Player",
+          "nodeLineageTag": "9ac1906c-7d41-489f-911d-2d527744b495",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 690.17846001767919,
+            "y": 226.41159112539526
+          },
+          "nodeIndex": "Dim Season",
+          "nodeLineageTag": "c2a1c702-ae98-4aab-9019-9e5d167d517b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 554.17016718593959,
+            "y": 677.21068084101648
+          },
+          "nodeIndex": "Dim Team",
+          "nodeLineageTag": "1f9b3f9b-35e4-48df-a3b7-c5903061d9bb",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50.078183597142655,
+            "y": 673.58787836546617
+          },
+          "nodeIndex": "Dim Venue",
+          "nodeLineageTag": "90413916-3750-49b0-9035-4e98a033c25f",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 691.72342662338269,
+            "y": 882.1092206855933
+          },
+          "nodeIndex": "Fact Ball",
+          "nodeLineageTag": "b69b5c91-7ee8-46fc-9a72-1b608a1ef206",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.1158864108487,
+            "y": 324.33067811533397
+          },
+          "nodeIndex": "Fact Match",
+          "nodeLineageTag": "f055e11c-9590-4fda-994a-fc6ba98205f5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 44.905697313103978,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

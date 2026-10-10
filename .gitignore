@@ -1,0 +1,29 @@
+# Power BI Workspace specific ignores
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Archives and Backups (DO NOT COMMIT)
+Cleanup_Archive_20261009/
+Development_Archive/
+*.Report_Backup/
+
+# Power BI Desktop Binary (Optional)
+# Uncomment the line below to enforce PBIP usage and avoid tracking binary blobs
+# *.pbix
+
+# Obsolete Python Repair Scripts (All verified as temporary/hardcoded one-offs)
+analyze_visuals.py
+check_refs.py
+fix_*.py
+inspect_*.py
+test_schemas.py
+update_visual_schemas.py
+
+# Development / Utility Logs
+visual_summary.json
+model_utf8.json
+
+# Datasets
+# GitHub limits files to 100MB. The 42MB ball-by-ball file is acceptable, 
+# but uncomment the line below for a lightweight repository if data is hosted elsewhere.
+# data/

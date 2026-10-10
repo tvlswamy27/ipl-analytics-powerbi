@@ -1,0 +1,288 @@
+table 'Fact Ball'
+	lineageTag: b69b5c91-7ee8-46fc-9a72-1b608a1ef206
+
+	column match_id
+		dataType: int64
+		lineageTag: c629fcf9-c2e5-4337-923e-b992cfaa18dc
+		summarizeBy: none
+		sourceColumn: match_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column innings
+		dataType: int64
+		lineageTag: 91a54d49-6ea1-4d7e-9b82-06e2f2e1f8d0
+		summarizeBy: sum
+		sourceColumn: innings
+
+		annotation SummarizationSetBy = Automatic
+
+	column over_number
+		dataType: int64
+		lineageTag: 81432f3e-40c8-49a7-8591-ce71ae0e5b5e
+		summarizeBy: sum
+		sourceColumn: over_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column ball_number
+		dataType: int64
+		lineageTag: 796ab102-36c0-47b2-b526-71e6cab77606
+		summarizeBy: sum
+		sourceColumn: ball_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_batting
+		dataType: int64
+		lineageTag: bd7b18fc-105a-4d57-8b02-2566d5498e27
+		summarizeBy: none
+		sourceColumn: team_batting
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_bowling
+		dataType: int64
+		lineageTag: 793d561e-f67a-4245-ad45-5d76e3ef91a0
+		summarizeBy: sum
+		sourceColumn: team_bowling
+
+		annotation SummarizationSetBy = Automatic
+
+	column batter
+		dataType: string
+		lineageTag: 8abb7ce9-7d3a-4c2b-8a11-2fc20547e0df
+		summarizeBy: none
+		sourceColumn: batter
+
+		annotation SummarizationSetBy = Automatic
+
+	column bowler
+		dataType: string
+		lineageTag: 22ce4483-e6ff-42ac-b5f6-4df56908b87d
+		summarizeBy: none
+		sourceColumn: bowler
+
+		annotation SummarizationSetBy = Automatic
+
+	column non_striker
+		dataType: string
+		lineageTag: f85ba54a-bee1-4081-92e5-c6487c3d6fca
+		summarizeBy: none
+		sourceColumn: non_striker
+
+		annotation SummarizationSetBy = Automatic
+
+	column batter_runs
+		dataType: int64
+		lineageTag: 8cccd231-27b1-4a8d-87dd-0ef41f1aa0b1
+		summarizeBy: sum
+		sourceColumn: batter_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column extras
+		dataType: int64
+		lineageTag: 0c3da8dc-7fcf-4284-865a-ee28aaffdeba
+		summarizeBy: sum
+		sourceColumn: extras
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_runs
+		dataType: int64
+		lineageTag: e6baf552-6478-4eee-afed-3d74e60dae8f
+		summarizeBy: sum
+		sourceColumn: total_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_wicket
+		dataType: boolean
+		lineageTag: 1a9643d0-2e30-40ed-a360-570754457e4e
+		summarizeBy: none
+		sourceColumn: is_wicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_wide_ball
+		dataType: boolean
+		lineageTag: ad4cd507-1b81-42b8-af34-1b1f12026fb7
+		summarizeBy: none
+		sourceColumn: is_wide_ball
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_no_ball
+		dataType: boolean
+		lineageTag: 486eff48-bdb2-4214-aa8b-97eb09005094
+		summarizeBy: none
+		sourceColumn: is_no_ball
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_leg_bye
+		dataType: boolean
+		lineageTag: 8b44a3ec-91e6-4008-a2bc-0222449994e7
+		summarizeBy: none
+		sourceColumn: is_leg_bye
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_bye
+		dataType: boolean
+		lineageTag: 052afb0b-4353-4da1-865b-2611f0bc0996
+		summarizeBy: none
+		sourceColumn: is_bye
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_penalty
+		dataType: boolean
+		lineageTag: b28e617b-a8f8-461b-8a61-1892c219792e
+		summarizeBy: none
+		sourceColumn: is_penalty
+
+		annotation SummarizationSetBy = Automatic
+
+	column wide_ball_runs
+		dataType: int64
+		lineageTag: 3c0fd3d8-a7b1-48be-bf99-7e6396b338fc
+		summarizeBy: sum
+		sourceColumn: wide_ball_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_ball_runs
+		dataType: int64
+		lineageTag: 9898947c-04e1-4ee0-9be0-357b3b5b5a88
+		summarizeBy: sum
+		sourceColumn: no_ball_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column leg_bye_runs
+		dataType: int64
+		lineageTag: 9a1b1fac-801a-4562-9c58-897ea0619560
+		summarizeBy: sum
+		sourceColumn: leg_bye_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column bye_runs
+		dataType: int64
+		lineageTag: 43c9000a-ccda-4dae-9fdc-95f1510af60b
+		summarizeBy: sum
+		sourceColumn: bye_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_runs
+		dataType: int64
+		lineageTag: 7e38edfd-efde-46ad-820b-c7b208d50f5c
+		summarizeBy: sum
+		sourceColumn: penalty_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column wicket_kind
+		dataType: string
+		lineageTag: 34f708b8-9c26-4bd9-a1d0-db8558d48f59
+		summarizeBy: none
+		sourceColumn: wicket_kind
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_out
+		dataType: string
+		lineageTag: 10b31787-1e47-4646-a361-5addfcf8bfb7
+		summarizeBy: none
+		sourceColumn: player_out
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Boundary' = IF('Fact Ball'[batter_runs] IN {4, 6}, 1, 0)
+		dataType: int64
+		lineageTag: 073ea312-5692-484a-898b-3a5a9f1e229a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Four' = IF('Fact Ball'[batter_runs] = 4, 1, 0)
+		dataType: int64
+		lineageTag: 74ddd953-839f-4b19-9f24-c3804f84400c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Six' = IF('Fact Ball'[batter_runs] = 6, 1, 0)
+		dataType: int64
+		lineageTag: 0a77c7a2-a50b-41d4-8cca-aafff16e8519
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Dot Ball' = IF('Fact Ball'[total_runs] = 0 && 'Fact Ball'[is_wicket] = FALSE(), 1, 0)
+		dataType: int64
+		lineageTag: c51b637d-93bb-4072-96e3-5fede1625b06
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Extra' = IF('Fact Ball'[extras] > 0, 1, 0)
+		dataType: int64
+		lineageTag: d0028102-baf0-46aa-9e79-beb66207905b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: string
+		lineageTag: bbcbd9be-1918-4767-b4a6-6fcededfbeb7
+		summarizeBy: none
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column batsman_type
+		dataType: string
+		lineageTag: 31378752-c07a-466c-ac3c-bf2158baec8a
+		summarizeBy: none
+		sourceColumn: batsman_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column bowler_type
+		dataType: string
+		lineageTag: 719f58cd-53d0-40ee-9120-67eae20a4fdc
+		summarizeBy: none
+		sourceColumn: bowler_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column fielders_involved
+		dataType: string
+		lineageTag: 65c39db6-8d08-46cf-bf17-491a95627ed4
+		summarizeBy: none
+		sourceColumn: fielders_involved
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_super_over
+		dataType: string
+		lineageTag: 49ba742e-4db7-4d32-9b4d-bf09f7a995a7
+		summarizeBy: none
+		sourceColumn: is_super_over
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Ball' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(WorkspaceDataPath & "ball_by_ball_data.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders,{{"match_id", Int64.Type}, {"innings", Int64.Type}, {"over_number", Int64.Type}, {"ball_number", Int64.Type}, {"team_batting", Int64.Type}, {"team_bowling", Int64.Type}, {"batter", type text}, {"bowler", type text}, {"non_striker", type text}, {"batter_runs", Int64.Type}, {"extras", Int64.Type}, {"total_runs", Int64.Type}, {"is_wicket", type logical}, {"is_wide_ball", type logical}, {"is_no_ball", type logical}, {"is_leg_bye", type logical}, {"is_bye", type logical}, {"is_penalty", type logical}, {"wide_ball_runs", Int64.Type}, {"no_ball_runs", Int64.Type}, {"leg_bye_runs", Int64.Type}, {"bye_runs", Int64.Type}, {"penalty_runs", Int64.Type}, {"wicket_kind", type text}, {"player_out", type text}})
+				in
+				    ChangedType
+

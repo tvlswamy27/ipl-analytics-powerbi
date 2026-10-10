@@ -1,0 +1,62 @@
+relationship Relationship
+	fromColumn: 'Fact Match'.match_date
+	toColumn: 'Dim Date'.Date
+
+relationship 'Relationship 1'
+	fromColumn: 'Fact Match'.season_id
+	toColumn: 'Dim Season'.season_id
+
+relationship 'Relationship 2'
+	fromColumn: 'Fact Match'.venue
+	toColumn: 'Dim Venue'.venue
+
+relationship 'Relationship 3'
+	fromColumn: 'Fact Match'.match_winner
+	toColumn: 'Dim Match Winner'.team_id
+
+relationship 'Relationship 4'
+	isActive: false
+	fromColumn: 'Fact Match'.team1
+	toColumn: 'Dim Team'.team_id
+
+relationship 'Relationship 5'
+	isActive: false
+	fromColumn: 'Fact Match'.team2
+	toColumn: 'Dim Team'.team_id
+
+relationship 'Relationship 6'
+	isActive: false
+	fromColumn: 'Fact Match'.toss_winner
+	toColumn: 'Dim Team'.team_id
+
+relationship 'Relationship 7'
+	fromColumn: 'Fact Match'.player_of_match
+	toColumn: 'Dim Match Player'.player_id
+
+relationship 'Relationship 8'
+	fromColumn: 'Fact Ball'.match_id
+	toColumn: 'Fact Match'.match_id
+
+relationship 'Relationship 9'
+	fromColumn: 'Fact Ball'.team_batting
+	toColumn: 'Dim Team'.team_id
+
+relationship 'Relationship 10'
+	isActive: false
+	fromColumn: 'Fact Ball'.team_bowling
+	toColumn: 'Dim Team'.team_id
+
+relationship 'Relationship 11'
+	fromColumn: 'Fact Ball'.batter
+	toColumn: 'Dim Player'.player_name
+
+relationship 'Relationship 12'
+	isActive: false
+	fromColumn: 'Fact Ball'.bowler
+	toColumn: 'Dim Player'.player_name
+
+relationship 'Relationship 13'
+	isActive: false
+	fromColumn: 'Fact Ball'.player_out
+	toColumn: 'Dim Player'.player_name
+

@@ -1,0 +1,218 @@
+table 'Fact Match'
+	lineageTag: f055e11c-9590-4fda-994a-fc6ba98205f5
+
+	column match_id
+		dataType: int64
+		lineageTag: f031df83-634d-4759-8f73-14b105405edc
+		summarizeBy: none
+		sourceColumn: match_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: int64
+		lineageTag: 79c3af60-71af-4b3d-a1a3-7aea7b377f96
+		summarizeBy: none
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: af73e82c-505a-40ab-b76d-6c3becd766a6
+		summarizeBy: none
+		sourceColumn: match_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column city
+		dataType: string
+		lineageTag: b480dda3-fd50-4a0b-85af-645ae12960ee
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column venue
+		dataType: string
+		lineageTag: 0ff7e108-8395-45f0-bffd-20a2a67419de
+		summarizeBy: none
+		sourceColumn: venue
+
+		annotation SummarizationSetBy = Automatic
+
+	column team1
+		dataType: int64
+		lineageTag: e4c913f2-dbdd-49ce-829b-881aa2228763
+		summarizeBy: sum
+		sourceColumn: team1
+
+		annotation SummarizationSetBy = Automatic
+
+	column team2
+		dataType: int64
+		lineageTag: ab7f2645-5a7d-4198-8d79-1417df5c2754
+		summarizeBy: sum
+		sourceColumn: team2
+
+		annotation SummarizationSetBy = Automatic
+
+	column toss_winner
+		dataType: int64
+		lineageTag: ded77dfc-d431-4a8f-94a1-704a77330106
+		summarizeBy: sum
+		sourceColumn: toss_winner
+
+		annotation SummarizationSetBy = Automatic
+
+	column toss_decision
+		dataType: string
+		lineageTag: f6fc1a11-b37c-4120-8c90-932bb9726583
+		summarizeBy: none
+		sourceColumn: toss_decision
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_winner
+		dataType: int64
+		lineageTag: da31b7f0-ffda-4f84-975a-ae224fd958a8
+		summarizeBy: none
+		sourceColumn: match_winner
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_by_runs
+		dataType: double
+		lineageTag: f0e8f177-f9e1-433a-b10e-9cc6662c06d5
+		summarizeBy: sum
+		sourceColumn: win_by_runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_by_wickets
+		dataType: double
+		lineageTag: 3fa438d9-d557-4a57-966b-242b6508c56a
+		summarizeBy: sum
+		sourceColumn: win_by_wickets
+
+		annotation SummarizationSetBy = Automatic
+
+	column result
+		dataType: string
+		lineageTag: 41d75677-dd4b-468d-a809-32edcc8cf7d6
+		summarizeBy: none
+		sourceColumn: result
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_of_match
+		dataType: int64
+		lineageTag: 24a0813e-46f2-4754-a440-ee62f87a1108
+		summarizeBy: none
+		sourceColumn: player_of_match
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: f979e865-47ae-445a-8fe3-7bc74b7d648c
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_number
+		dataType: double
+		lineageTag: f75d30fa-196f-4fc5-8fc6-4588b6d1611c
+		summarizeBy: sum
+		sourceColumn: match_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column batting_first_flag
+		dataType: int64
+		lineageTag: 65302092-bfb6-485f-8e41-897609d1c8d8
+		summarizeBy: sum
+		sourceColumn: batting_first_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column chasing_flag
+		dataType: int64
+		lineageTag: 050b0ef1-df95-4d88-8dea-ce9016dffd2b
+		summarizeBy: sum
+		sourceColumn: chasing_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column balls_per_over
+		dataType: string
+		lineageTag: 99bb75e6-4d23-4d70-9db0-dcad4eb90e0e
+		summarizeBy: none
+		sourceColumn: balls_per_over
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_name
+		dataType: string
+		lineageTag: e40eb51e-efd6-4ed0-bba7-7542f3f85012
+		summarizeBy: none
+		sourceColumn: event_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 20fca90e-f397-48d4-b8f0-96033b98dffc
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_type
+		dataType: string
+		lineageTag: af124f21-b084-49b2-8b95-8425141e52ee
+		summarizeBy: none
+		sourceColumn: match_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column format
+		dataType: string
+		lineageTag: 5972052a-b564-40c0-b95d-1ae674943c59
+		summarizeBy: none
+		sourceColumn: format
+
+		annotation SummarizationSetBy = Automatic
+
+	column overs
+		dataType: string
+		lineageTag: d749a57d-07a4-44e1-81c2-2e8d762df1ce
+		summarizeBy: none
+		sourceColumn: overs
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_type
+		dataType: string
+		lineageTag: dbb8ef42-d0f0-4c3c-babc-954202fa45fd
+		summarizeBy: none
+		sourceColumn: team_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Match' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(WorkspaceDataPath & "ipl_matches_data.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders,{{"match_id", Int64.Type}, {"season_id", Int64.Type}, {"match_date", type date}, {"city", type text}, {"venue", type text}, {"team1", Int64.Type}, {"team2", Int64.Type}, {"toss_winner", Int64.Type}, {"toss_decision", type text}, {"match_winner", Int64.Type}, {"win_by_runs", type number}, {"win_by_wickets", type number}, {"result", type text}, {"player_of_match", Int64.Type}, {"season", type text}, {"match_number", type number}}),
+				    AddedBattingFirst = Table.AddColumn(ChangedType, "batting_first_flag", each if [toss_decision] = "bat" then [toss_winner] else if [team1] = [toss_winner] then [team2] else [team1], Int64.Type),
+				    AddedChasing = Table.AddColumn(AddedBattingFirst, "chasing_flag", each if [toss_decision] = "field" then [toss_winner] else if [team1] = [toss_winner] then [team2] else [team1], Int64.Type)
+				in
+				    AddedChasing
+

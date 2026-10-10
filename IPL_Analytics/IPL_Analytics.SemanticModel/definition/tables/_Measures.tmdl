@@ -1,0 +1,371 @@
+table _Measures
+	lineageTag: 79ef7452-73eb-4587-8b10-74792f46e573
+
+	measure 'Total Matches' = COUNTROWS('Fact Match')
+		formatString: #,##0
+		displayFolder: 01 - Match
+		lineageTag: 03fdcf8d-4b20-4789-92c1-5561ad716c44
+
+	measure 'Completed Matches' = CALCULATE([Total Matches], 'Fact Match'[result] <> "no result")
+		formatString: #,##0
+		displayFolder: 01 - Match
+		lineageTag: 81943c04-6384-4dcc-b5ca-6a1df2b3b103
+
+	measure 'Tied Matches' = CALCULATE([Total Matches], 'Fact Match'[result] = "tie")
+		formatString: #,##0
+		displayFolder: 01 - Match
+		lineageTag: 14029b18-1ab3-4903-bc75-51abd69f992a
+
+	measure 'No Result Matches' = CALCULATE([Total Matches], 'Fact Match'[result] = "no result")
+		formatString: #,##0
+		displayFolder: 01 - Match
+		lineageTag: a421146b-e384-4339-8d81-f6116ff1c919
+
+	measure 'Matches Played' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), CALCULATE([Total Matches], REMOVEFILTERS('Dim Team'), 'Fact Match'[team1] = CurrentTeam || 'Fact Match'[team2] = CurrentTeam), [Total Matches])
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 0b0f55b7-f3b6-4394-8076-5a0fc32b8f42
+
+	measure 'Matches Won' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), CALCULATE(COUNTROWS('Fact Match'), REMOVEFILTERS('Dim Team'), 'Fact Match'[match_winner] = CurrentTeam), COUNTROWS('Fact Match'))
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 1f6d48e0-9982-4c46-be94-b96370bc3761
+
+	measure 'Team Tied Matches' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), CALCULATE([Tied Matches], REMOVEFILTERS('Dim Team'), 'Fact Match'[team1] = CurrentTeam || 'Fact Match'[team2] = CurrentTeam), [Tied Matches])
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 488a659d-83fa-47ee-9636-447d4ed84147
+
+	measure 'Team No Result Matches' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), CALCULATE([No Result Matches], REMOVEFILTERS('Dim Team'), 'Fact Match'[team1] = CurrentTeam || 'Fact Match'[team2] = CurrentTeam), [No Result Matches])
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 78ce0495-4fdf-43a8-a32d-37f9c3c6285a
+
+	measure 'Matches Lost' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), [Matches Played] - [Matches Won] - [Team Tied Matches] - [Team No Result Matches], CALCULATE(COUNTROWS('Fact Match'), 'Fact Match'[result] <> "win" && 'Fact Match'[result] <> "tie" && 'Fact Match'[result] <> "no result"))
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 2ad4b3e9-211c-414b-b34a-b360355f6686
+
+	measure 'Win %' = DIVIDE([Matches Won], [Matches Played], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: a5167eaa-1a14-4270-a36f-a2de674ab2fd
+
+	measure 'Loss %' = DIVIDE([Matches Lost], [Matches Played], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: f68fd18c-b2fb-4331-a622-a4c71dc61f66
+
+	measure 'Toss Wins' = VAR CurrentTeam = SELECTEDVALUE('Dim Team'[team_id]) RETURN IF(NOT ISBLANK(CurrentTeam), CALCULATE([Total Matches], REMOVEFILTERS('Dim Team'), 'Fact Match'[toss_winner] = CurrentTeam), CALCULATE([Total Matches], USERELATIONSHIP('Fact Match'[toss_winner], 'Dim Team'[team_id])))
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 5f7938d7-ce7c-44ac-9cbf-4d7fb3608d92
+
+	measure 'Toss Win %' = DIVIDE([Toss Wins], [Matches Played], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: 59b1eb36-04b4-4699-b9ef-366b190f2de0
+
+	measure 'Toss Winner Match Win %' = DIVIDE(CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[toss_winner]), [Toss Wins], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: 4b049be3-160e-46e5-8fea-f6c3ad52aa88
+
+	measure 'Bat First Wins' = CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[batting_first_flag])
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 074ab5cd-23f7-4ff2-a94d-4bf1bf1c2bfb
+
+	measure 'Chasing Wins' = CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[chasing_flag])
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 861b35b3-a80d-41c9-b907-aa062a9fe667
+
+	measure 'Team Completed Matches' = [Matches Played] - [Team No Result Matches]
+		formatString: #,##0
+		displayFolder: 02 - Team
+		lineageTag: 875bcafd-181e-461a-8726-59b62e7547cf
+
+	measure 'Bat First Win %' = DIVIDE([Bat First Wins], [Team Completed Matches], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: 3a4be505-5898-4afb-8f11-627807b4afe8
+
+	measure 'Chasing Win %' = DIVIDE([Chasing Wins], [Team Completed Matches], 0)
+		formatString: 0.0%
+		displayFolder: 02 - Team
+		lineageTag: 2dbf64ec-8342-40d9-afbf-d17162341854
+
+	measure 'Total Runs' = SUM('Fact Ball'[total_runs])
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: 8e0d25ea-2048-457c-b386-0c1bfc3e9cc1
+
+	measure 'Batter Runs' = SUM('Fact Ball'[batter_runs])
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: afb50a07-02dd-4f13-8157-af94a445ebd0
+
+	measure 'Runs per Match' = DIVIDE([Total Runs], DISTINCTCOUNT('Fact Ball'[match_id]), 0)
+		formatString: 0.00
+		displayFolder: 03 - Batting
+		lineageTag: e8b26cd9-be28-4c89-85bc-23aa4dbb3b59
+
+	measure 'Balls Faced' = COUNTROWS('Fact Ball') - CALCULATE(COUNTROWS('Fact Ball'), 'Fact Ball'[is_wide_ball] = TRUE())
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: c36673a9-eb91-4f72-9709-8fa15cad9d67
+
+	measure 'Batting Average' = DIVIDE([Batter Runs], CALCULATE(COUNTROWS('Fact Ball'), 'Fact Ball'[is_wicket] = TRUE(), 'Fact Ball'[wicket_kind] <> "run out", 'Fact Ball'[wicket_kind] <> "retired hurt"))
+		formatString: 0.00
+		displayFolder: 03 - Batting
+		lineageTag: 2269cbcb-d517-470c-8034-5388513ecc13
+
+	measure 'Strike Rate' = DIVIDE([Batter Runs], [Balls Faced], 0) * 100
+		formatString: 0.00
+		displayFolder: 03 - Batting
+		lineageTag: cf155f9e-a139-4b55-acf6-ce334695163c
+
+	measure Fours = SUM('Fact Ball'[Is Four])
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: 0dcdbf37-88da-4ca9-8922-967d0d3470ab
+
+	measure Sixes = SUM('Fact Ball'[Is Six])
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: 241e2e63-b68a-4c7e-a38b-64a6394355f9
+
+	measure 'Boundary Runs' = ([Fours] * 4) + ([Sixes] * 6)
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: 8d750901-3cda-4eae-96bc-7fe432e05d72
+
+	measure 'Boundary %' = DIVIDE([Boundary Runs], [Batter Runs], 0)
+		formatString: 0.0%
+		displayFolder: 03 - Batting
+		lineageTag: 1930a518-fe66-4e21-8ba8-17517ada1c52
+
+	measure 'Batting Dot Balls' =
+			
+			CALCULATE(
+			    COUNTROWS('Fact Ball'),
+			    'Fact Ball'[batter_runs] = 0,
+			    'Fact Ball'[is_wide_ball] = FALSE()
+			)
+		formatString: #,##0
+		displayFolder: 03 - Batting
+		lineageTag: c18efc25-8ae4-4d8a-865f-6b2e5b68c5d9
+
+	measure 'Batting Dot Ball %' = DIVIDE([Batting Dot Balls], [Balls Faced], 0)
+		formatString: 0.0%
+		displayFolder: 03 - Batting
+		lineageTag: 35effed6-59dc-40c0-a114-91ad284e2684
+
+	measure 'Total Wickets' =
+			
+			CALCULATE(
+			    COUNTROWS('Fact Ball'),
+			    'Fact Ball'[is_wicket] = TRUE()
+			)
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: a49acf86-4e74-4110-820c-36ed4aef76d4
+
+	measure 'Balls Bowled' = COUNTROWS('Fact Ball') - CALCULATE(COUNTROWS('Fact Ball'), 'Fact Ball'[is_wide_ball] = TRUE() || 'Fact Ball'[is_no_ball] = TRUE())
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: 52b752db-5866-4329-9be4-b5cc1aeb65ef
+
+	measure 'Overs Bowled' = DIVIDE([Balls Bowled], 6, 0)
+		formatString: 0.00
+		displayFolder: 04 - Bowling
+		lineageTag: cb7b6b0a-d4a0-4da5-9b4a-b0413fad8136
+
+	measure 'Runs Conceded' = SUM('Fact Ball'[total_runs]) - SUM('Fact Ball'[leg_bye_runs]) - SUM('Fact Ball'[bye_runs]) - SUM('Fact Ball'[penalty_runs])
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: 443c9fae-2292-49dd-80c4-2ea98d477a72
+
+	measure 'Bowling Average' = DIVIDE([Runs Conceded], [Total Wickets], 0)
+		formatString: 0.00
+		displayFolder: 04 - Bowling
+		lineageTag: aeaddf19-65ef-4116-bed5-9e799b577242
+
+	measure 'Economy Rate' = DIVIDE([Runs Conceded], [Overs Bowled], 0)
+		formatString: 0.00
+		displayFolder: 04 - Bowling
+		lineageTag: e5974bdf-4a6e-4d05-8624-d7d05fcd9bbc
+
+	measure 'Bowling Dot Balls' =
+			
+			CALCULATE(
+			    COUNTROWS('Fact Ball'),
+			    'Fact Ball'[total_runs] = 0
+			)
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: f041b49b-3e30-4301-8a30-2cb09fae16e5
+
+	measure 'Bowling Dot Ball %' = DIVIDE([Bowling Dot Balls], [Balls Bowled], 0)
+		formatString: 0.0%
+		displayFolder: 04 - Bowling
+		lineageTag: a8462d05-d661-4c35-bd05-ce73d7f16247
+
+	measure Wides = CALCULATE(COUNTROWS('Fact Ball'), 'Fact Ball'[is_wide_ball] = TRUE())
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: c550499e-c426-4cbe-9409-1d9e5dacf539
+
+	measure 'No Balls' = CALCULATE(COUNTROWS('Fact Ball'), 'Fact Ball'[is_no_ball] = TRUE())
+		formatString: #,##0
+		displayFolder: 04 - Bowling
+		lineageTag: 43ac9e65-fd05-4837-9566-51ee98b7136b
+
+	measure 'Balls per Wicket' = DIVIDE([Balls Bowled], [Total Wickets], 0)
+		formatString: 0.00
+		displayFolder: 04 - Bowling
+		lineageTag: 8a510208-7f0e-4854-94de-1bedd58a0f0f
+
+	measure 'First Innings Score' = CALCULATE([Total Runs], 'Fact Ball'[innings] = 1)
+		formatString: #,##0
+		displayFolder: 05 - Match Performance
+		lineageTag: 4eb49b5a-0d1d-42bc-b212-2bb4e0d2b217
+
+	measure 'Second Innings Score' = CALCULATE([Total Runs], 'Fact Ball'[innings] = 2)
+		formatString: #,##0
+		displayFolder: 05 - Match Performance
+		lineageTag: c1b428dc-b9fb-4a68-9fbc-6134b57f7f1e
+
+	measure 'Average First Innings Score' = DIVIDE([First Innings Score], DISTINCTCOUNT('Fact Ball'[match_id]), 0)
+		formatString: 0.00
+		displayFolder: 05 - Match Performance
+		lineageTag: 04e7dd74-f4ee-4dd8-b13f-2a33ee7433a4
+
+	measure 'Average Second Innings Score' = DIVIDE([Second Innings Score], DISTINCTCOUNT('Fact Ball'[match_id]), 0)
+		formatString: 0.00
+		displayFolder: 05 - Match Performance
+		lineageTag: a080460f-3f62-41f4-93f6-ad0704886d55
+
+	measure 'Average Winning Margin - Runs' = AVERAGEX(FILTER('Fact Match', 'Fact Match'[win_by_runs] > 0), 'Fact Match'[win_by_runs])
+		formatString: 0.00
+		displayFolder: 05 - Match Performance
+		lineageTag: d0481ef9-e9f0-44e0-ae6c-3411ff7b8716
+
+	measure 'Average Winning Margin - Wickets' = AVERAGEX(FILTER('Fact Match', 'Fact Match'[win_by_wickets] > 0), 'Fact Match'[win_by_wickets])
+		formatString: 0.00
+		displayFolder: 05 - Match Performance
+		lineageTag: 6da3c8ac-4c4b-4fe8-a34a-904a1c89bf78
+
+	measure 'Wins by Runs' = CALCULATE([Matches Won], 'Fact Match'[win_by_runs] > 0)
+		formatString: #,##0
+		displayFolder: 05 - Match Performance
+		lineageTag: 39f28db3-987d-4632-b613-89facd916f4e
+
+	measure 'Wins by Wickets' = CALCULATE([Matches Won], 'Fact Match'[win_by_wickets] > 0)
+		formatString: #,##0
+		displayFolder: 05 - Match Performance
+		lineageTag: 8133ff87-656e-4dbf-aea1-845b3a18fed9
+
+	measure 'Player of Match Awards' = COUNTROWS('Fact Match')
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: a6fcf975-aba1-4da2-9337-7e33069f9bf9
+
+	measure 'Highest Score' = MAXX(ADDCOLUMNS(SUMMARIZE('Fact Ball', 'Fact Ball'[match_id], 'Fact Ball'[batter]), "Runs", [Batter Runs]), [Runs])
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: 95944795-f80f-43bd-bf21-5785f183d0fc
+
+	measure Fifties = COUNTROWS(FILTER(ADDCOLUMNS(SUMMARIZE('Fact Ball', 'Fact Ball'[match_id], 'Fact Ball'[batter]), "Runs", [Batter Runs]), [Runs] >= 50 && [Runs] < 100))
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: 670c91d7-efd6-4d00-b836-8c96a968c0ad
+
+	measure Hundreds = COUNTROWS(FILTER(ADDCOLUMNS(SUMMARIZE('Fact Ball', 'Fact Ball'[match_id], 'Fact Ball'[batter]), "Runs", [Batter Runs]), [Runs] >= 100))
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: 6a517c15-7374-4219-842b-ae881c2b8985
+
+	measure 'Career Runs' = [Batter Runs]
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: 15384e04-2ca9-4170-a1f3-1f3b7325deba
+
+	measure 'Career Wickets' = [Total Wickets]
+		formatString: #,##0
+		displayFolder: 06 - Player
+		lineageTag: 3833750d-87d2-4bc4-a8a5-19edad1d97a5
+
+	measure 'Career Strike Rate' = [Strike Rate]
+		formatString: 0.00
+		displayFolder: 06 - Player
+		lineageTag: 74f14669-50a2-43ca-bcd9-e8e0a1ba0d66
+
+	measure 'Career Average' = [Batting Average]
+		formatString: 0.00
+		displayFolder: 06 - Player
+		lineageTag: e5517b12-05b1-468c-a4e8-70e1e4cf825e
+
+	measure 'Matches by Venue' = [Total Matches]
+		formatString: #,##0
+		displayFolder: 08 - Venue
+		lineageTag: 3efa3942-4e8f-4131-a320-33ba6bc96451
+
+	measure 'Average Score by Venue' = [Average First Innings Score]
+		formatString: 0.00
+		displayFolder: 08 - Venue
+		lineageTag: 26ec0931-99e2-43fb-a6e7-aea8b4f368f0
+
+	measure 'Chase Success %' = DIVIDE(CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[chasing_flag]), [Completed Matches], 0)
+		formatString: 0.0%
+		displayFolder: 08 - Venue
+		lineageTag: 111e9d52-c336-4277-8c4f-35ed4a5db4d9
+
+	measure 'Bat First Success %' = DIVIDE(CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[batting_first_flag]), [Completed Matches], 0)
+		formatString: 0.0%
+		displayFolder: 08 - Venue
+		lineageTag: 759ca70d-746c-4191-9213-7527002ef8c2
+
+	measure 'Toss Impact %' = DIVIDE(CALCULATE([Matches Won], 'Fact Match'[match_winner] = 'Fact Match'[toss_winner]), [Completed Matches], 0)
+		formatString: 0.0%
+		displayFolder: 08 - Venue
+		lineageTag: 31534e4c-2116-4988-9cca-b88060635de2
+
+	measure 'H2H Matches' = VAR TeamA = SELECTEDVALUE('Dim Team'[team_id]) VAR TeamB = SELECTEDVALUE('Dim Opponent'[team_id]) RETURN CALCULATE([Completed Matches], REMOVEFILTERS('Dim Team'), REMOVEFILTERS('Dim Opponent'), ('Fact Match'[team1] = TeamA && 'Fact Match'[team2] = TeamB) || ('Fact Match'[team1] = TeamB && 'Fact Match'[team2] = TeamA))
+		formatString: #,##0
+		displayFolder: 09 - Head-to-Head
+		lineageTag: 2596a596-93da-46d0-afc4-c6de9c6c1658
+
+	measure 'H2H Team A Wins' = VAR TeamA = SELECTEDVALUE('Dim Team'[team_id]) VAR TeamB = SELECTEDVALUE('Dim Opponent'[team_id]) RETURN CALCULATE([Matches Won], REMOVEFILTERS('Dim Team'), REMOVEFILTERS('Dim Opponent'), 'Fact Match'[match_winner] = TeamA, (('Fact Match'[team1] = TeamA && 'Fact Match'[team2] = TeamB) || ('Fact Match'[team1] = TeamB && 'Fact Match'[team2] = TeamA)))
+		formatString: #,##0
+		displayFolder: 09 - Head-to-Head
+		lineageTag: 3cb320d4-9f62-4205-a0c6-8b389284596c
+
+	measure 'H2H Team B Wins' = VAR TeamA = SELECTEDVALUE('Dim Team'[team_id]) VAR TeamB = SELECTEDVALUE('Dim Opponent'[team_id]) RETURN CALCULATE([Matches Won], REMOVEFILTERS('Dim Team'), REMOVEFILTERS('Dim Opponent'), 'Fact Match'[match_winner] = TeamB, (('Fact Match'[team1] = TeamA && 'Fact Match'[team2] = TeamB) || ('Fact Match'[team1] = TeamB && 'Fact Match'[team2] = TeamA)))
+		formatString: #,##0
+		displayFolder: 09 - Head-to-Head
+		lineageTag: 539cbbf4-1975-4045-9e2f-1f07f473646d
+
+	measure 'H2H Team A Win %' = DIVIDE([H2H Team A Wins], [H2H Matches], 0)
+		formatString: 0.0%
+		displayFolder: 09 - Head-to-Head
+		lineageTag: f9b302b7-bd6d-4896-a084-177b5a8816c6
+
+	measure 'H2H Team B Win %' = DIVIDE([H2H Team B Wins], [H2H Matches], 0)
+		formatString: 0.0%
+		displayFolder: 09 - Head-to-Head
+		lineageTag: 3058c00d-8483-40e5-a63e-0a00992ca0ee
+
+	column Value
+		lineageTag: bfdbfb1f-d48d-4f20-ba63-1a536e2b7f9d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = DATATABLE("Value", INTEGER, {{1}})
+
