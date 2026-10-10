@@ -125,11 +125,20 @@ To clone and run this project on your local machine:
 ---
 
 ## 📸 Dashboard Preview
-> *[Placeholder: Add high-resolution screenshots of the 5 dashboard pages here. Save them to a `screenshots/` directory in the repository and link them below]*
->
-> *Example:*
-> `![Season Story](screenshots/season_story.png)`
-> `![Player Lab](screenshots/player_lab.png)`
+**Season Story** - High-level summary of IPL history and scoring trends.
+![Season Story](screenshots/season_story.png)
+
+**Team Room** - Franchise performance and head-to-head records.
+![Team Room](screenshots/team_room.png)
+
+**Player Lab** - Individual batting and bowling profiles.
+![Player Lab](screenshots/player_lab.png)
+
+**Venues & Toss** - Ground scoring patterns and toss decision impacts.
+![Venues & Toss](screenshots/venues_toss.png)
+
+**Ball-by-Ball** - Granular delivery-level and over-level insights.
+![Ball-by-Ball](screenshots/ball_by_ball.png)
 
 ---
 
