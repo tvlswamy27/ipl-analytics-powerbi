@@ -27,3 +27,6 @@ model_utf8.json
 # GitHub limits files to 100MB. The 42MB ball-by-ball file is acceptable, 
 # but uncomment the line below for a lightweight repository if data is hosted elsewhere.
 # data/
+
+# OS hidden files
+desktop.ini
